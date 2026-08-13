@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комуз сыры | Устаттар жана Прайс</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome иконкалар үчүн -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5c3a21;
+            --accent: #d97706;
+            --text-main: #ffffff;
+            --text-muted: #e0e0e0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* БҮТКҮЛ САЙТТЫН ФОНУ */
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('atay.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ЖОГОРКУ ЖАБЫЩКААК МЕНЮ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.3);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+        .nav-brand span {
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* СОЦИАЛДЫК ТАРМАКТАР ИКОНКАЛАРЫ */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-left: 10px;
+            padding-left: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .social-icons a.instagram:hover {
+            color: #E1306C;
+            transform: scale(1.1);
+        }
+        .social-icons a.youtube:hover {
+            color: #FF0000;
+            transform: scale(1.1);
+        }
+
+        /* БАШКЫ БАННЕР */
+        header {
+            text-align: center;
+            padding: 180px 20px 80px 20px;
+        }
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+        }
+        header h2 {
+            color: #ffca28;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #ffca28;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* КУРСКОН ӨЗГӨЧӨЛҮКТӨРҮ (АРТЫКЧЫЛЫКТАРЫ) */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* МУГАЛИМДЕР КАРТОЧКАЛАРЫ */
+        .teachers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .teacher-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 5px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+        .teacher-card:hover {
+            transform: translateY(-8px);
+        }
+        .teacher-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .teacher-card h3 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        .teacher-role {
+            color: #ffca28;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .teacher-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ПРАЙС КАРТОЧКАЛАРЫ */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .price-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-8px);
+        }
+        .price-card h3 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        .price-val {
+            font-size: 2.2rem;
+            color: #ffca28;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .price-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+        }
+        .btn:hover {
+            background-color: #b45309;
+            transform: scale(1.05);
+        }
+
+        /* ОКУУЧУЛАРДЫН ПИКИРИ (ОТЗЫВДАР) */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .review-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .review-author {
+            font-weight: bold;
+            color: #ffca28;
+            margin-bottom: 5px;
+        }
+        .review-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* КӨП БЕРИЛҮҮЧҮ СУРОТОР (FAQ) */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .faq-item {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .faq-q {
+            font-weight: bold;
+            color: #ffca28;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .faq-a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* БАШКАРУУ ПАНЕЛИ */
+        .admin-toggle-info {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .admin-toggle-info button {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #ffca28;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        .admin-panel {
+            background: rgba(40, 30, 20, 0.9);
+            backdrop-filter: blur(15px);
+            border: 2px dashed var(--accent);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: none;
+        }
+        .admin-panel h3, .admin-panel h4 {
+            color: #ffca28;
+            margin-bottom: 15px;
+        }
+        .admin-group {
+            margin-bottom: 15px;
+        }
+        .admin-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .admin-group input, .admin-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #555;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        .admin-group textarea {
+            resize: vertical;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ЖАБЫЩКААК МЕНЮ -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="atay.jpg" alt="Атай устат">
+            <span>Комуз сыры</span>
+        </div>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="#features">Артыкчылыктар</a>
+                <a href="#teachers">Устаттар</a>
+                <a href="#pricing">Прайс</a>
+                <a href="#reviews">Пикирлер</a>
+                <a href="#faq">Суроолор</a>
+            </div>
+            <!-- Социалдык тармактардын иконкалары -->
+            <div class="social-icons">
+                <a href="#" id="navInsta" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" id="navYoutube" class="youtube" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- БАШКЫ БӨЛҮМ -->
+    <header data-aos="fade-down" data-aos-duration="1000">
+        <h1 id="outHeaderTitle">«Комуз сыры» курсу</h1>
+        <h2 id="outHeaderSubtitle">Устат: Атай агай</h2>
+        <p id="outHeaderDesc">Улуттук өнөрдү нөлдөн баштап профессионалдык деңгээлге чейин сырларын ачып үйрөнүңүз.</p>
+        <a href="#pricing" class="btn">Прайс менен таанышуу</a>
+    </header>
+
+    <div class="container">
+
+        <!-- АГАНЫН БАШКАРУУ ПАНЕЛИ -->
+        <div class="admin-toggle-info">
+            <button onclick="toggleAdmin()">⚙️ Башкаруу панели</button>
+        </div>
+
+        <div class="admin-panel" id="adminPanel">
+            <h3>⚙️ Сайтты башкаруу панели</h3>
+            
+            <div class="admin-group">
+                <label>WhatsApp Номериңиз (мисалы: 996500123456):</label>
+                <input type="text" id="inPhone" value="996500123456">
+            </div>
+
+            <div class="admin-group">
+                <label>Instagram шилтемеси (URL):</label>
+                <input type="text" id="inInsta" value="https://instagram.com">
+            </div>
+
+            <div class="admin-group">
+                <label>YouTube шилтемеси (URL):</label>
+                <input type="text" id="inYoutube" value="https://youtube.com">
+            </div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
+
+            <h4>✨ Башкы беттеги жазуулар (Header)</h4>
+            <div class="admin-group">
+                <label>Башкы чоң аталыш (H1):</label>
+                <input type="text" id="inHeaderTitle" value="«Комуз сыры» курсу">
+            </div>
+            <div class="admin-group">
+                <label>Кичине аталыш / Устаттын аты (H2):</label>
+                <input type="text" id="inHeaderSubtitle" value="Устат: Атай агай">
+            </div>
+            <div class="admin-group">
+                <label>Башкы текст / Описание:</label>
+                <textarea id="inHeaderDesc">Улуттук өнөрдү нөлдөн баштап профессионалдык деңгээлге чейин сырларын ачып үйрөнүңүз.</textarea>
+            </div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
+
+            <h4>🌟 Курстун өзгөчөлүктөрү (Артыкчылыктар)</h4>
+            <div class="admin-group"><label>1-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle1" value="Нөлдөн үйрөнүү"></div>
+            <div class="admin-group"><label>1-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc1" value="Музыкалык билимсиз эле комуз чертүүнү тез өздөштүрүңүз."></div>
+            
+            <div class="admin-group"><label>2-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle2" value="Ыңгайлуу график"></div>
+            <div class="admin-group"><label>2-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc2" value="Өзүңүзгө ыңгайлуу убакта сабактарга катышыңыз."></div>
+
+            <div class="admin-group"><label>3-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle3" value="Практикалык тажрыйба"></div>
+            <div class="admin-group"><label>3-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc3" value="Кыска мөөнөттө белгилүү күүлөрдү эркин чертип баштаңыз."></div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
+
+            <h4>👨‍🏫 Мугалимдер</h4>
+            <div class="admin-group"><label>Мугалим 1 Сүрөт URL:</label><input type="text" id="inTImg1" value="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"></div>
+            <div class="admin-group"><label>Мугалим 1 Аты:</label><input type="text" id="inTName1" value="Кылымбек Саттаров"></div>
+            <div class="admin-group"><label>Мугалим 1 Ролу:</label><input type="text" id="inTRole1" value="Башкы устат (10 жыл тажрыйба)"></div>
+            <div class="admin-group"><label>Мугалим 1 Маалымат:</label><input type="text" id="inTDesc1" value="Нөлдөн баштап нотасыз, кулак менен чертүүнүн сырларын үйрөтөт."></div>
+            <div class="admin-group"><label>Көрсөтүү (true / false):</label><input type="text" id="inTShow1" value="true"></div>
+
+            <div class="admin-group"><label>Мугалим 2 Сүрөт URL:</label><input type="text" id="inTImg2" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"></div>
+            <div class="admin-group"><label>Мугалим 2 Аты:</label><input type="text" id="inTName2" value="Бүбүжан устат"></div>
+            <div class="admin-group"><label>Мугалим 2 Ролу:</label><input type="text" id="inTRole2" value="Педагог - методист"></div>
+            <div class="admin-group"><label>Мугалим 2 Маалымат:</label><input type="text" id="inTDesc2" value="Балдар жана чоңдор үчүн атайын жеке программа менен сабак өтөт."></div>
+            <div class="admin-group"><label>Көрсөтүү (true / false):</label><input type="text" id="inTShow2" value="true"></div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
+
+            <h4>💰 Сабактардын баасы</h4>
+            <div class="admin-group"><label>1. Жеке сабак баасы:</label><input type="text" id="inPrice1" value="6000 сом"></div>
+            <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc1" value="Айына 3 жолу, толук жеке көңүл бурулат."></div>
+
+            <div class="admin-group"><label>2. Группалык сабак баасы:</label><input type="text" id="inPrice2" value="3000 сом"></div>
+            <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc2" value="Чакан топтордо чогуу үйрөнүү."></div>
+
+            <div class="admin-group"><label>3. Бир сабак баасы:</label><input type="text" id="inPrice3" value="600 сом"></div>
+            <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc3" value="Сыноо сабагы же бир жолку келүү."></div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
+
+            <h4>💬 Окуучулардын пикирлери (Отзывдар)</h4>
+            <div class="admin-group"><label>1-Отзыв автору:</label><input type="text" id="inRevAuthor1" value="Айсулуу Бекболотова"></div>
+            <div class="admin-group"><label>1-Отзыв тексти:</label><textarea id="inRevDesc1">«Атай агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</textarea></div>
+
+            <div class="admin-group"><label>2-Отзыв автору:</label><input type="text" id="inRevAuthor2" value="Бакыт Марат уулу"></div>
+            <div class="admin-group"><label>2-Отзыв тексти:</label><textarea id="inRevDesc2">«Нөлдөн баштагам, учурда эркин чертип калдым. Түшүндүрүү ыкмасы супер.»</textarea></div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
+
+            <h4>❓ Көп берилүүчү суроолор (FAQ)</h4>
+            <div class="admin-group"><label>1-Суроо:</label><input type="text" id="inFaqQ1" value="Комузум жок болсо дагы окуй аламбы?"></div>
+            <div class="admin-group"><label>1-Жооп:</label><textarea id="inFaqQ1Desc">Ооба, биринчи сабактарда студиянын комуздарын колдоно аласыз, кийин өзүңүзгө сатып алууга кеңеш беребиз.</textarea></div>
+
+            <div class="admin-group"><label>2-Суроо:</label><input type="text" id="inFaqQ2" value="Сабактар канча убакытка созулат?"></div>
+            <div class="admin-group"><label>2-Жооп:</label><textarea id="inFaqQ2Desc">Бир сабактын убактысы 1 саатты (60 мүнөт) түзөт.</textarea></div>
+
+            <button class="btn" onclick="saveData()">Өзгөртүүлөрдү сактоо</button>
+        </div>
+
+        <!-- КУРСКОН ӨЗГӨЧӨЛҮКТӨРҮ БӨЛҮМҮ -->
+        <section id="features">
+            <h2 class="section-title" data-aos="fade-up">Эмне үчүн бизди тандашат?</h2>
+            <div class="features-container">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3 id="outFeatTitle1">Нөлдөн үйрөнүү</h3>
+                    <p id="outFeatDesc1">Музыкалык билимсиз эле комуз чертүүнү тез өздөштүрүңүз.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-clock"></i>
+                    <h3 id="outFeatTitle2">Ыңгайлуу график</h3>
+                    <p id="outFeatDesc2">Өзүңүзгө ыңгайлуу убакта сабактарга катышыңыз.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-award"></i>
+                    <h3 id="outFeatTitle3">Практикалык тажрыйба</h3>
+                    <p id="outFeatDesc3">Кыска мөөнөттө белгилүү күүлөрдү эркин чертип баштаңыз.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- МУГАЛИМДЕР БӨЛҮМҮ -->
+        <section id="teachers">
+            <h2 class="section-title" data-aos="fade-up">Биздин Устаттар</h2>
+            <div class="teachers-container" id="teachersContainer"></div>
+        </section>
+
+        <!-- ПРАЙС БӨЛҮМҮ -->
+        <section id="pricing">
+            <h2 class="section-title" data-aos="fade-up">Сабактардын баасы</h2>
+            <div class="pricing-container">
+                <div class="price-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Жеке сабак</h3>
+                    <div class="price-val" id="outPrice1">6000 сом</div>
+                    <p class="price-desc" id="outDesc1">Айына 3 жолу, толук жеке көңүл бурулат.</p>
+                    <a href="#" id="waBtn1" class="btn" target="_blank">Жазылуу</a>
+                </div>
+                <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Группалык сабак</h3>
+                    <div class="price-val" id="outPrice2">3000 сом</div>
+                    <p class="price-desc" id="outDesc2">Чакан топтордо чогуу үйрөнүү.</p>
+                    <a href="#" id="waBtn2" class="btn" target="_blank">Жазылуу</a>
+                </div>
+                <div class="price-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Бир сабак</h3>
+                    <div class="price-val" id="outPrice3">600 сом</div>
+                    <p class="price-desc" id="outDesc3">Сыноо сабагы же бир жолку келүү.</p>
+                    <a href="#" id="waBtn3" class="btn" target="_blank">Жазылуу</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ОКУУЧУЛАРДЫН ПИКИРИ БӨЛҮМҮ -->
+        <section id="reviews">
+            <h2 class="section-title" data-aos="fade-up">Окуучулардын пикирлери</h2>
+            <div class="reviews-container">
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-author" id="outRevAuthor1">Айсулуу Бекболотова</div>
+                    <p class="review-text" id="outRevDesc1">«Атай агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</p>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="review-author" id="outRevAuthor2">Бакыт Марат уулу</div>
+                    <p class="review-text" id="outRevDesc2">«Нөлдөн баштагам, учурда эркин чертип калдым. Түшүндүрүү ыкмасы супер.»</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- КӨП БЕРИЛҮҮЧҮ СУРОТОР БӨЛҮМҮ -->
+        <section id="faq">
+            <h2 class="section-title" data-aos="fade-up">Көп берилүүчү суроолор</h2>
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-q" id="outFaqQ1">Комузум жок болсо дагы окуй аламбы?</div>
+                    <div class="faq-a" id="outFaqQ1Desc">Ооба, биринчи сабактарда студиянын комуздарын колдоно аласыз, кийин өзүңүзгө сатып алууга кеңеш беребиз.</div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-q" id="outFaqQ2">Сабактар канча убакытка созулат?</div>
+                    <div class="faq-a" id="outFaqQ2Desc">Бир сабактын убактысы 1 саатты (60 мүнөт) түзөт.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+
+        function toggleAdmin() {
+            let panel = document.getElementById('adminPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function loadData() {
+            if(localStorage.getItem('phone')) document.getElementById('inPhone').value = localStorage.getItem('phone');
+            if(localStorage.getItem('insta')) document.getElementById('inInsta').value = localStorage.getItem('insta');
+            if(localStorage.getItem('youtube')) document.getElementById('inYoutube').value = localStorage.getItem('youtube');
+            
+            if(localStorage.getItem('headerTitle')) document.getElementById('inHeaderTitle').value = localStorage.getItem('headerTitle');
+            if(localStorage.getItem('headerSubtitle')) document.getElementById('inHeaderSubtitle').value = localStorage.getItem('headerSubtitle');
+            if(localStorage.getItem('headerDesc')) document.getElementById('inHeaderDesc').value = localStorage.getItem('headerDesc');
+
+            if(localStorage.getItem('featTitle1')) document.getElementById('inFeatTitle1').value = localStorage.getItem('featTitle1');
+            if(localStorage.getItem('featDesc1')) document.getElementById('inFeatDesc1').value = localStorage.getItem('featDesc1');
+            if(localStorage.getItem('featTitle2')) document.getElementById('inFeatTitle2').value = localStorage.getItem('featTitle2');
+            if(localStorage.getItem('featDesc2')) document.getElementById('inFeatDesc2').value = localStorage.getItem('featDesc2');
+            if(localStorage.getItem('featTitle3')) document.getElementById('inFeatTitle3').value = localStorage.getItem('featTitle3');
+            if(localStorage.getItem('featDesc3')) document.getElementById('inFeatDesc3').value = localStorage.getItem('featDesc3');
+
+            if(localStorage.getItem('tImg1')) document.getElementById('inTImg1').value = localStorage.getItem('tImg1');
+            if(localStorage.getItem('tName1')) document.getElementById('inTName1').value = localStorage.getItem('tName1');
+            if(localStorage.getItem('tRole1')) document.getElementById('inTRole1').value = localStorage.getItem('tRole1');
+            if(localStorage.getItem('tDesc1')) document.getElementById('inTDesc1').value = localStorage.getItem('tDesc1');
+            if(localStorage.getItem('tShow1')) document.getElementById('inTShow1').value = localStorage.getItem('tShow1');
+
+            if(localStorage.getItem('tImg2')) document.getElementById('inTImg2').value = localStorage.getItem('tImg2');
+            if(localStorage.getItem('tName2')) document.getElementById('inTName2').value = localStorage.getItem('tName2');
+            if(localStorage.getItem('tRole2')) document.getElementById('inTRole2').value = localStorage.getItem('tRole2');
+            if(localStorage.getItem('tDesc2')) document.getElementById('inTDesc2').value = localStorage.getItem('tDesc2');
+            if(localStorage.getItem('tShow2')) document.getElementById('inTShow2').value = localStorage.getItem('tShow2');
+
+            if(localStorage.getItem('p1')) document.getElementById('inPrice1').value = localStorage.getItem('p1');
+            if(localStorage.getItem('d1')) document.getElementById('inDesc1').value = localStorage.getItem('d1');
+            if(localStorage.getItem('p2')) document.getElementById('inPrice2').value = localStorage.getItem('p2');
+            if(localStorage.getItem('d2')) document.getElementById('inDesc2').value = localStorage.getItem('d2');
+            if(localStorage.getItem('p3')) document.getElementById('inPrice3').value = localStorage.getItem('p3');
+            if(localStorage.getItem('d3')) document.getElementById('inDesc3').value = localStorage.getItem('d3');
+
+            if(localStorage.getItem('revAuthor1')) document.getElementById('inRevAuthor1').value = localStorage.getItem('revAuthor1');
+            if(localStorage.getItem('revDesc1')) document.getElementById('inRevDesc1').value = localStorage.getItem('revDesc1');
+            if(localStorage.getItem('revAuthor2')) document.getElementById('inRevAuthor2').value = localStorage.getItem('revAuthor2');
+            if(localStorage.getItem('revDesc2')) document.getElementById('inRevDesc2').value = localStorage.getItem('revDesc2');
+
+            if(localStorage.getItem('faqQ1')) document.getElementById('inFaqQ1').value = localStorage.getItem('faqQ1');
+            if(localStorage.getItem('faqQ1Desc')) document.getElementById('inFaqQ1Desc').value = localStorage.getItem('faqQ1Desc');
+            if(localStorage.getItem('faqQ2')) document.getElementById('inFaqQ2').value = localStorage.getItem('faqQ2');
+            if(localStorage.getItem('faqQ2Desc')) document.getElementById('inFaqQ2Desc').value = localStorage.getItem('faqQ2Desc');
+
+            updateUI();
+        }
+
+        function saveData() {
+            localStorage.setItem('phone', document.getElementById('inPhone').value);
+            localStorage.setItem('insta', document.getElementById('inInsta').value);
+            localStorage.setItem('youtube', document.getElementById('inYoutube').value);
+            
+            localStorage.setItem('headerTitle', document.getElementById('inHeaderTitle').value);
+            localStorage.setItem('headerSubtitle', document.getElementById('inHeaderSubtitle').value);
+            localStorage.setItem('headerDesc', document.getElementById('inHeaderDesc').value);
+
+            localStorage.setItem('featTitle1', document.getElementById('inFeatTitle1').value);
+            localStorage.setItem('featDesc1', document.getElementById('inFeatDesc1').value);
+            localStorage.setItem('featTitle2', document.getElementById('inFeatTitle2').value);
+            localStorage.setItem('featDesc2', document.getElementById('inFeatDesc2').value);
+            localStorage.setItem('featTitle3', document.getElementById('inFeatTitle3').value);
+            localStorage.setItem('featDesc3', document.getElementById('inFeatDesc3').value);
+
+            localStorage.setItem('tImg1', document.getElementById('inTImg1').value);
+            localStorage.setItem('tName1', document.getElementById('inTName1').value);
+            localStorage.setItem('tRole1', document.getElementById('inTRole1').value);
+            localStorage.setItem('tDesc1', document.getElementById('inTDesc1').value);
+            localStorage.setItem('tShow1', document.getElementById('inTShow1').value);
+
+            localStorage.setItem('tImg2', document.getElementById('inTImg2').value);
+            localStorage.setItem('tName2', document.getElementById('inTName2').value);
+            localStorage.setItem('tRole2', document.getElementById('inTRole2').value);
+            localStorage.setItem('tDesc2', document.getElementById('inTDesc2').value);
+            localStorage.setItem('tShow2', document.getElementById('inTShow2').value);
+
+            localStorage.setItem('p1', document.getElementById('inPrice1').value);
+            localStorage.setItem('d1', document.getElementById('inDesc1').value);
+            localStorage.setItem('p2', document.getElementById('inPrice2').value);
+            localStorage.setItem('d2', document.getElementById('inDesc2').value);
+            localStorage.setItem('p3', document.getElementById('inPrice3').value);
+            localStorage.setItem('d3', document.getElementById('inDesc3').value);
+
+            localStorage.setItem('revAuthor1', document.getElementById('inRevAuthor1').value);
+            localStorage.setItem('revDesc1', document.getElementById('inRevDesc1').value);
+            localStorage.setItem('revAuthor2', document.getElementById('inRevAuthor2').value);
+            localStorage.setItem('revDesc2', document.getElementById('inRevDesc2').value);
+
+            localStorage.setItem('faqQ1', document.getElementById('inFaqQ1').value);
+            localStorage.setItem('faqQ1Desc', document.getElementById('inFaqQ1Desc').value);
+            localStorage.setItem('faqQ2', document.getElementById('inFaqQ2').value);
+            localStorage.setItem('faqQ2Desc', document.getElementById('inFaqQ2Desc').value);
+
+            updateUI();
+            alert('Өзгөртүүлөр ийгиликтүү сакталды!');
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+
+        function updateUI() {
+            let phone = document.getElementById('inPhone').value;
+            
+            document.getElementById('navInsta').href = document.getElementById('inInsta').value;
+            document.getElementById('navYoutube').href = document.getElementById('inYoutube').value;
+
+            document.getElementById('outHeaderTitle').innerText = document.getElementById('inHeaderTitle').value;
+            document.getElementById('outHeaderSubtitle').innerText = document.getElementById('inHeaderSubtitle').value;
+            document.getElementById('outHeaderDesc').innerText = document.getElementById('inHeaderDesc').value;
+
+            document.getElementById('outFeatTitle1').innerText = document.getElementById('inFeatTitle1').value;
+            document.getElementById('outFeatDesc1').innerText = document.getElementById('inFeatDesc1').value;
+            document.getElementById('outFeatTitle2').innerText = document.getElementById('inFeatTitle2').value;
+            document.getElementById('outFeatDesc2').innerText = document.getElementById('inFeatDesc2').value;
+            document.getElementById('outFeatTitle3').innerText = document.getElementById('inFeatTitle3').value;
+            document.getElementById('outFeatDesc3').innerText = document.getElementById('inFeatDesc3').value;
+
+            let teachersHtml = '';
+            let tShow1 = document.getElementById('inTShow1').value.trim().toLowerCase();
+            if(tShow1 === 'true') {
+                teachersHtml += `
+                    <div class="teacher-card" data-aos="fade-up">
+                        <img src="${document.getElementById('inTImg1').value}" alt="Мугалим">
+                        <h3>${document.getElementById('inTName1').value}</h3>
+                        <span class="teacher-role">${document.getElementById('inTRole1').value}</span>
+                        <p class="teacher-desc">${document.getElementById('inTDesc1').value}</p>
+                    </div>`;
+            }
+
+            let tShow2 = document.getElementById('inTShow2').value.trim().toLowerCase();
+            if(tShow2 === 'true') {
+                teachersHtml += `
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="150">
+                        <img src="${document.getElementById('inTImg2').value}" alt="Мугалим">
+                        <h3>${document.getElementById('inTName2').value}</h3>
+                        <span class="teacher-role">${document.getElementById('inTRole2').value}</span>
+                        <p class="teacher-desc">${document.getElementById('inTDesc2').value}</p>
+                    </div>`;
+            }
+            document.getElementById('teachersContainer').innerHTML = teachersHtml;
+
+            let p1 = document.getElementById('inPrice1').value;
+            let d1 = document.getElementById('inDesc1').value;
+            document.getElementById('outPrice1').innerText = p1;
+            document.getElementById('outDesc1').innerText = d1;
+            document.getElementById('waBtn1').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Жеке%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d1)}%20(Баасы:%20${encodeURIComponent(p1)})`;
+
+            let p2 = document.getElementById('inPrice2').value;
+            let d2 = document.getElementById('inDesc2').value;
+            document.getElementById('outPrice2').innerText = p2;
+            document.getElementById('outDesc2').innerText = d2;
+            document.getElementById('waBtn2').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Группалык%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d2)}%20(Баасы:%20${encodeURIComponent(p2)})`;
+
+            let p3 = document.getElementById('inPrice3').value;
+            let d3 = document.getElementById('inDesc3').value;
+            document.getElementById('outPrice3').innerText = p3;
+            document.getElementById('outDesc3').innerText = d3;
+            document.getElementById('waBtn3').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Бир%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d3)}%20(Баасы:%20${encodeURIComponent(p3)})`;
+
+            document.getElementById('outRevAuthor1').innerText = document.getElementById('inRevAuthor1').value;
+            document.getElementById('outRevDesc1').innerText = document.getElementById('inRevDesc1').value;
+            document.getElementById('outRevAuthor2').innerText = document.getElementById('inRevAuthor2').value;
+            document.getElementById('outRevDesc2').innerText = document.getElementById('inRevDesc2').value;
+
+            document.getElementById('outFaqQ1').innerText = document.getElementById('inFaqQ1').value;
+            document.getElementById('outFaqQ1Desc').innerText = document.getElementById('inFaqQ1Desc').value;
+            document.getElementById('outFaqQ2').innerText = document.getElementById('inFaqQ2').value;
+            document.getElementById('outFaqQ2Desc').innerText = document.getElementById('inFaqQ2Desc').value;
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>
