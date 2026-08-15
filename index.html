@@ -2,10 +2,9 @@
 <html lang="ky">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Комуз сыры | Устаттар жана Прайс</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Комуз сыры | Кылымбек Саттаров</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- FontAwesome иконкалар үчүн -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,6 +12,8 @@
             --accent: #d97706;
             --text-main: #ffffff;
             --text-muted: #e0e0e0;
+            --bg-dark: #141210;
+            --bg-card: rgba(30, 30, 30, 0.75);
         }
         * {
             margin: 0;
@@ -20,17 +21,16 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        html { scroll-behavior: smooth; }
 
-        /* БҮТКҮЛ САЙТТЫН ФОНУ */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('atay.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ЖОГОРКУ ЖАБЫЩКААК МЕНЮ */
+        /* ЖОГОРКУ ЖАБЫШКААК МЕНЮ */
         .navbar {
             position: fixed;
             top: 0;
@@ -46,97 +46,84 @@
             z-index: 1000;
             border-bottom: 1px solid rgba(217, 119, 6, 0.3);
         }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; }
         .nav-brand img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent);
+            width: 45px; height: 45px; border-radius: 50%;
+            object-fit: cover; border: 2px solid var(--accent);
         }
-        .nav-brand span {
-            font-weight: bold;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-        }
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .nav-brand span { font-weight: bold; font-size: 1.1rem; letter-spacing: 0.5px; }
+        .nav-menu { display: flex; align-items: center; gap: 20px; }
+        .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+            color: white; text-decoration: none; font-size: 0.95rem;
+            transition: color 0.4s ease-in-out;
         }
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* СОЦИАЛДЫК ТАРМАКТАР ИКОНКАЛАРЫ */
+        .nav-links a:hover { color: var(--accent); }
         .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-left: 10px;
-            padding-left: 15px;
+            display: flex; gap: 15px; margin-left: 10px; padding-left: 15px;
             border-left: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .social-icons a {
-            color: white;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        .social-icons a.instagram:hover {
-            color: #E1306C;
-            transform: scale(1.1);
-        }
-        .social-icons a.youtube:hover {
-            color: #FF0000;
-            transform: scale(1.1);
+        .social-icons a { color: white; font-size: 1.2rem; transition: all 0.4s ease-in-out; }
+        .social-icons a.instagram:hover { color: #E1306C; transform: scale(1.15); }
+        .social-icons a.youtube:hover { color: #FF0000; transform: scale(1.15); }
+
+        /* Мобилдик меню баскычы */
+        .nav-toggle {
+            display: none;
+            background: none; border: none; color: white;
+            font-size: 1.6rem; cursor: pointer;
+            min-width: 44px; min-height: 44px;
         }
 
-        /* БАШКЫ БАННЕР */
-        header {
+        /* ============ HERO SECTION (100vh, фондук сүрөт fixed) ============ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 560px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 180px 20px 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(10,8,6,0.85)), url('atay.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 0 20px;
         }
-        header h1 {
+        .hero-inner { max-width: 700px; }
+        .hero h1 {
             font-size: 3.2rem;
             margin-bottom: 15px;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
         }
-        header h2 {
+        .hero h2 {
             color: #ffca28;
             font-size: 1.6rem;
             margin-bottom: 20px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
-        header p {
+        .hero p {
             font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto 30px auto;
             opacity: 0.95;
         }
+        .hero-scroll {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.75);
+            font-size: 1.4rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        section {
-            margin-bottom: 60px;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        section { margin-bottom: 60px; }
 
         .section-title {
             text-align: center;
@@ -149,210 +136,96 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 3px;
+            width: 50px; height: 3px;
             background: var(--accent);
             margin: 8px auto 0 auto;
             border-radius: 2px;
         }
 
-        /* КУРСКОН ӨЗГӨЧӨЛҮКТӨРҮ (АРТЫКЧЫЛЫКТАРЫ) */
-        .features-container {
+        /* КАРТОЧКАЛАР (жалпы стиль) */
+        .features-container, .pricing-container, .reviews-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
-        .feature-card {
-            background: rgba(30, 30, 30, 0.75);
+        .feature-card, .price-card, .review-card {
+            background: var(--bg-card);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
         }
-        .feature-card:hover {
-            transform: translateY(-8px);
+        .feature-card, .price-card { padding: 30px 20px; text-align: center; }
+        .price-card { padding: 35px 25px; }
+        .review-card { padding: 25px; }
+        .feature-card:hover, .price-card:hover, .review-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.5);
         }
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .feature-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
+        .feature-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* МУГАЛИМДЕР КАРТОЧКАЛАРЫ */
-        .teachers-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        .teacher-card {
-            background: rgba(30, 30, 30, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            text-align: center;
-            padding: 35px 20px;
-            border-top: 5px solid var(--accent);
-            transition: transform 0.3s ease;
-        }
-        .teacher-card:hover {
-            transform: translateY(-8px);
-        }
-        .teacher-card img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid var(--accent);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .teacher-card h3 {
-            color: #ffffff;
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-        }
-        .teacher-role {
-            color: #ffca28;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .teacher-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .price-card h3 { color: #ffffff; font-size: 1.4rem; margin-bottom: 10px; }
+        .price-val { font-size: 2.2rem; color: #ffca28; font-weight: bold; margin: 15px 0; }
+        .price-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
 
-        /* ПРАЙС КАРТОЧКАЛАРЫ */
-        .pricing-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .price-card {
-            background: rgba(30, 30, 30, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-        }
-        .price-card:hover {
-            transform: translateY(-8px);
-        }
-        .price-card h3 {
-            color: #ffffff;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-        .price-val {
-            font-size: 2.2rem;
-            color: #ffca28;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-        .price-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
         .btn {
             display: inline-block;
             background-color: var(--accent);
             color: white;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.3s;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
+            min-height: 48px;
             box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+            transition: all 0.4s ease-in-out;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn:hover {
-            background-color: #b45309;
-            transform: scale(1.05);
-        }
+        .btn:hover { background-color: #b45309; transform: scale(1.06); }
+        .btn:active { transform: scale(0.96); }
 
-        /* ОКУУЧУЛАРДЫН ПИКИРИ (ОТЗЫВДАР) */
-        .reviews-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .review-card {
-            background: rgba(30, 30, 30, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-        .review-author {
-            font-weight: bold;
-            color: #ffca28;
-            margin-bottom: 5px;
-        }
-        .review-text {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-style: italic;
-        }
+        .review-author { font-weight: bold; color: #ffca28; margin-bottom: 5px; }
+        .review-text { color: var(--text-muted); font-size: 0.95rem; font-style: italic; }
 
-        /* КӨП БЕРИЛҮҮЧҮ СУРОТОР (FAQ) */
-        .faq-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        .faq-container { display: flex; flex-direction: column; gap: 15px; }
         .faq-item {
-            background: rgba(30, 30, 30, 0.75);
+            background: var(--bg-card);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease-in-out;
         }
-        .faq-q {
-            font-weight: bold;
-            color: #ffca28;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        .faq-a {
+        .faq-item:hover { transform: translateY(-4px); }
+        .faq-q { font-weight: bold; color: #ffca28; font-size: 1.1rem; margin-bottom: 8px; }
+        .faq-a { color: var(--text-muted); font-size: 0.95rem; }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* БАШКАРУУ ПАНЕЛИ */
-        .admin-toggle-info {
-            text-align: right;
-            margin-bottom: 15px;
-        }
+        /* ============ БАШКАРУУ ПАНЕЛИ (Агай өзү өзгөртө турган жер) ============ */
+        .admin-toggle-info { text-align: right; margin-bottom: 15px; }
         .admin-toggle-info button {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255,255,255,0.2);
             color: #ffca28;
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.85rem;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
             cursor: pointer;
+            min-height: 44px;
         }
         .admin-panel {
             background: rgba(40, 30, 20, 0.9);
@@ -363,87 +236,125 @@
             margin-bottom: 40px;
             display: none;
         }
-        .admin-panel h3, .admin-panel h4 {
-            color: #ffca28;
-            margin-bottom: 15px;
-        }
-        .admin-group {
-            margin-bottom: 15px;
-        }
+        .admin-panel h3, .admin-panel h4 { color: #ffca28; margin-bottom: 15px; }
+        .admin-group { margin-bottom: 15px; }
         .admin-group label {
-            display: block;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-            color: #fff;
+            display: block; font-weight: bold; font-size: 0.9rem;
+            margin-bottom: 5px; color: #fff;
         }
-        .admin-group input, .admin-group textarea {
+        .admin-group input[type="text"], .admin-group textarea {
             width: 100%;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border: 1px solid #555;
             background: rgba(0,0,0,0.5);
             color: #fff;
             border-radius: 5px;
             font-size: 0.95rem;
         }
-        .admin-group textarea {
-            resize: vertical;
-            height: 70px;
+        .admin-group textarea { resize: vertical; height: 70px; }
+
+        /* ============ МОБИЛДИК АДАПТАЦИЯ ============ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: block; }
+            .nav-menu.open .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                background: rgba(20,20,20,0.97);
+                padding: 20px;
+                gap: 18px;
+                text-align: center;
+                border-bottom: 1px solid rgba(217,119,6,0.3);
+            }
+            .navbar { flex-wrap: wrap; }
+            .social-icons { margin-left: auto; border-left: none; }
+
+            /* iOS/Android'до fixed фон түшүрбөй, жеңил иштеши үчүн scroll режимине которобуз */
+            .hero { background-attachment: scroll; height: 100svh; }
+            .hero h1 { font-size: 2.1rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .hero p { font-size: 1rem; }
+
+            .section-title { font-size: 1.7rem; }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+                padding: 16px 24px;
+                font-size: 1.05rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.7rem; }
+            .hero h2 { font-size: 1.05rem; }
+            .hero p { font-size: 0.95rem; }
+            .container { padding: 15px; }
+            .feature-card, .price-card { padding: 25px 16px; }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover, .feature-card:hover,
+            .price-card:hover, .review-card:hover { transform: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ЖАБЫЩКААК МЕНЮ -->
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="atay.jpg" alt="Атай устат">
+            <img src="atay.jpg" alt="Кылымбек Саттаров">
             <span>Комуз сыры</span>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="navMenu">
             <div class="nav-links">
                 <a href="#features">Артыкчылыктар</a>
-                <a href="#teachers">Устаттар</a>
                 <a href="#pricing">Прайс</a>
                 <a href="#reviews">Пикирлер</a>
                 <a href="#faq">Суроолор</a>
             </div>
-            <!-- Социалдык тармактардын иконкалары -->
             <div class="social-icons">
                 <a href="#" id="navInsta" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="#" id="navYoutube" class="youtube" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
+        <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Меню">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
-    <!-- БАШКЫ БӨЛҮМ -->
-    <header data-aos="fade-down" data-aos-duration="1000">
-        <h1 id="outHeaderTitle">«Комуз сыры» курсу</h1>
-        <h2 id="outHeaderSubtitle">Устат: Атай агай</h2>
-        <p id="outHeaderDesc">Улуттук өнөрдү нөлдөн баштап профессионалдык деңгээлге чейин сырларын ачып үйрөнүңүз.</p>
-        <a href="#pricing" class="btn">Прайс менен таанышуу</a>
-    </header>
+    <!-- ============ HERO (100vh, fixed фон) ============ -->
+    <div class="hero">
+        <div class="hero-inner" data-aos="zoom-in" data-aos-duration="1000">
+            <h1 id="outHeaderTitle">«Комуз сыры» курсу</h1>
+            <h2 id="outHeaderSubtitle">Устат: Кылымбек Саттаров</h2>
+            <p id="outHeaderDesc">Улуттук өнөрдү нөлдөн баштап профессионалдык деңгээлге чейин сырларын ачып үйрөнүңүз.</p>
+            <a href="#pricing" class="btn">Прайс менен таанышуу</a>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </div>
 
     <div class="container">
 
-        <!-- АГАНЫН БАШКАРУУ ПАНЕЛИ -->
         <div class="admin-toggle-info">
             <button onclick="toggleAdmin()">⚙️ Башкаруу панели</button>
         </div>
 
         <div class="admin-panel" id="adminPanel">
             <h3>⚙️ Сайтты башкаруу панели</h3>
-            
+
             <div class="admin-group">
                 <label>WhatsApp Номериңиз (мисалы: 996500123456):</label>
                 <input type="text" id="inPhone" value="996500123456">
             </div>
-
             <div class="admin-group">
                 <label>Instagram шилтемеси (URL):</label>
                 <input type="text" id="inInsta" value="https://instagram.com">
             </div>
-
             <div class="admin-group">
                 <label>YouTube шилтемеси (URL):</label>
                 <input type="text" id="inYoutube" value="https://youtube.com">
@@ -451,14 +362,14 @@
 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
 
-            <h4>✨ Башкы беттеги жазуулар (Header)</h4>
+            <h4>✨ Башкы беттеги жазуулар (Hero)</h4>
             <div class="admin-group">
                 <label>Башкы чоң аталыш (H1):</label>
                 <input type="text" id="inHeaderTitle" value="«Комуз сыры» курсу">
             </div>
             <div class="admin-group">
                 <label>Кичине аталыш / Устаттын аты (H2):</label>
-                <input type="text" id="inHeaderSubtitle" value="Устат: Атай агай">
+                <input type="text" id="inHeaderSubtitle" value="Устат: Кылымбек Саттаров">
             </div>
             <div class="admin-group">
                 <label>Башкы текст / Описание:</label>
@@ -470,7 +381,7 @@
             <h4>🌟 Курстун өзгөчөлүктөрү (Артыкчылыктар)</h4>
             <div class="admin-group"><label>1-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle1" value="Нөлдөн үйрөнүү"></div>
             <div class="admin-group"><label>1-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc1" value="Музыкалык билимсиз эле комуз чертүүнү тез өздөштүрүңүз."></div>
-            
+
             <div class="admin-group"><label>2-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle2" value="Ыңгайлуу график"></div>
             <div class="admin-group"><label>2-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc2" value="Өзүңүзгө ыңгайлуу убакта сабактарга катышыңыз."></div>
 
@@ -479,39 +390,33 @@
 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
 
-            <h4>👨‍🏫 Мугалимдер</h4>
-            <div class="admin-group"><label>Мугалим 1 Сүрөт URL:</label><input type="text" id="inTImg1" value="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"></div>
-            <div class="admin-group"><label>Мугалим 1 Аты:</label><input type="text" id="inTName1" value="Кылымбек Саттаров"></div>
-            <div class="admin-group"><label>Мугалим 1 Ролу:</label><input type="text" id="inTRole1" value="Башкы устат (10 жыл тажрыйба)"></div>
-            <div class="admin-group"><label>Мугалим 1 Маалымат:</label><input type="text" id="inTDesc1" value="Нөлдөн баштап нотасыз, кулак менен чертүүнүн сырларын үйрөтөт."></div>
-            <div class="admin-group"><label>Көрсөтүү (true / false):</label><input type="text" id="inTShow1" value="true"></div>
-
-            <div class="admin-group"><label>Мугалим 2 Сүрөт URL:</label><input type="text" id="inTImg2" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"></div>
-            <div class="admin-group"><label>Мугалим 2 Аты:</label><input type="text" id="inTName2" value="Бүбүжан устат"></div>
-            <div class="admin-group"><label>Мугалим 2 Ролу:</label><input type="text" id="inTRole2" value="Педагог - методист"></div>
-            <div class="admin-group"><label>Мугалим 2 Маалымат:</label><input type="text" id="inTDesc2" value="Балдар жана чоңдор үчүн атайын жеке программа менен сабак өтөт."></div>
-            <div class="admin-group"><label>Көрсөтүү (true / false):</label><input type="text" id="inTShow2" value="true"></div>
-
-            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
-
             <h4>💰 Сабактардын баасы</h4>
             <div class="admin-group"><label>1. Жеке сабак баасы:</label><input type="text" id="inPrice1" value="6000 сом"></div>
             <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc1" value="Айына 3 жолу, толук жеке көңүл бурулат."></div>
 
-            <div class="admin-group"><label>2. Группалык сабак баасы:</label><input type="text" id="inPrice2" value="3000 сом"></div>
-            <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc2" value="Чакан топтордо чогуу үйрөнүү."></div>
+            <div class="admin-group"><label>2. Онлайн сабак (видео уроктор) баасы:</label><input type="text" id="inPrice2" value="3000 сом"></div>
+            <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc2" value="Даяр видео сабактар аркылуу өз убагыңызда үйрөнүү."></div>
 
-            <div class="admin-group"><label>3. Бир сабак баасы:</label><input type="text" id="inPrice3" value="600 сом"></div>
+            <div class="admin-group"><label>3. Видеозвонок аркылуу сабак баасы:</label><input type="text" id="inPrice4" value="5000 сом"></div>
+            <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc4" value="Устат менен түз видеозвонок аркылуу жеке байланышта сабак."></div>
+
+            <div class="admin-group"><label>4. Бир сабак баасы:</label><input type="text" id="inPrice3" value="600 сом"></div>
             <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc3" value="Сыноо сабагы же бир жолку келүү."></div>
 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
 
             <h4>💬 Окуучулардын пикирлери (Отзывдар)</h4>
             <div class="admin-group"><label>1-Отзыв автору:</label><input type="text" id="inRevAuthor1" value="Айсулуу Бекболотова"></div>
-            <div class="admin-group"><label>1-Отзыв тексти:</label><textarea id="inRevDesc1">«Атай агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</textarea></div>
+            <div class="admin-group"><label>1-Отзыв тексти:</label><textarea id="inRevDesc1">«Кылымбек агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</textarea></div>
 
             <div class="admin-group"><label>2-Отзыв автору:</label><input type="text" id="inRevAuthor2" value="Бакыт Марат уулу"></div>
             <div class="admin-group"><label>2-Отзыв тексти:</label><textarea id="inRevDesc2">«Нөлдөн баштагам, учурда эркин чертип калдым. Түшүндүрүү ыкмасы супер.»</textarea></div>
+
+            <div class="admin-group"><label>3-Отзыв автору:</label><input type="text" id="inRevAuthor3" value="Нурлан Эркинов"></div>
+            <div class="admin-group"><label>3-Отзыв тексти:</label><textarea id="inRevDesc3">«Комуз черте албайм деп ойлочумун, бирок Кылымбек агай ар бир кыймылды жай, түшүнүктүү көрсөтөт. Эки айда эле алгачкы күүмдү черте баштадым.»</textarea></div>
+
+            <div class="admin-group"><label>4-Отзыв автору:</label><input type="text" id="inRevAuthor4" value="Гүлназ Осмонова"></div>
+            <div class="admin-group"><label>4-Отзыв тексти:</label><textarea id="inRevDesc4">«Балама жазылдырдым, эки жумада эле үйгө комуз чертип келет. Мугалимдин мамилеси да, окутуу ыкмасы да абдан жакшы.»</textarea></div>
 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
 
@@ -525,7 +430,6 @@
             <button class="btn" onclick="saveData()">Өзгөртүүлөрдү сактоо</button>
         </div>
 
-        <!-- КУРСКОН ӨЗГӨЧӨЛҮКТӨРҮ БӨЛҮМҮ -->
         <section id="features">
             <h2 class="section-title" data-aos="fade-up">Эмне үчүн бизди тандашат?</h2>
             <div class="features-container">
@@ -547,29 +451,28 @@
             </div>
         </section>
 
-        <!-- МУГАЛИМДЕР БӨЛҮМҮ -->
-        <section id="teachers">
-            <h2 class="section-title" data-aos="fade-up">Биздин Устаттар</h2>
-            <div class="teachers-container" id="teachersContainer"></div>
-        </section>
-
-        <!-- ПРАЙС БӨЛҮМҮ -->
         <section id="pricing">
             <h2 class="section-title" data-aos="fade-up">Сабактардын баасы</h2>
             <div class="pricing-container">
-                <div class="price-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="100">
                     <h3>Жеке сабак</h3>
                     <div class="price-val" id="outPrice1">6000 сом</div>
                     <p class="price-desc" id="outDesc1">Айына 3 жолу, толук жеке көңүл бурулат.</p>
                     <a href="#" id="waBtn1" class="btn" target="_blank">Жазылуу</a>
                 </div>
-                <div class="price-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Группалык сабак</h3>
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>Онлайн сабак (видео уроктор)</h3>
                     <div class="price-val" id="outPrice2">3000 сом</div>
-                    <p class="price-desc" id="outDesc2">Чакан топтордо чогуу үйрөнүү.</p>
+                    <p class="price-desc" id="outDesc2">Даяр видео сабактар аркылуу өз убагыңызда үйрөнүү.</p>
                     <a href="#" id="waBtn2" class="btn" target="_blank">Жазылуу</a>
                 </div>
-                <div class="price-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="300">
+                    <h3>Видеозвонок аркылуу сабак</h3>
+                    <div class="price-val" id="outPrice4">5000 сом</div>
+                    <p class="price-desc" id="outDesc4">Устат менен түз видеозвонок аркылуу жеке байланышта сабак.</p>
+                    <a href="#" id="waBtn4" class="btn" target="_blank">Жазылуу</a>
+                </div>
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="400">
                     <h3>Бир сабак</h3>
                     <div class="price-val" id="outPrice3">600 сом</div>
                     <p class="price-desc" id="outDesc3">Сыноо сабагы же бир жолку келүү.</p>
@@ -578,22 +481,28 @@
             </div>
         </section>
 
-        <!-- ОКУУЧУЛАРДЫН ПИКИРИ БӨЛҮМҮ -->
         <section id="reviews">
             <h2 class="section-title" data-aos="fade-up">Окуучулардын пикирлери</h2>
             <div class="reviews-container">
                 <div class="review-card" data-aos="fade-up">
                     <div class="review-author" id="outRevAuthor1">Айсулуу Бекболотова</div>
-                    <p class="review-text" id="outRevDesc1">«Атай агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</p>
+                    <p class="review-text" id="outRevDesc1">«Кылымбек агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</p>
                 </div>
                 <div class="review-card" data-aos="fade-up" data-aos-delay="150">
                     <div class="review-author" id="outRevAuthor2">Бакыт Марат уулу</div>
                     <p class="review-text" id="outRevDesc2">«Нөлдөн баштагам, учурда эркин чертип калдым. Түшүндүрүү ыкмасы супер.»</p>
                 </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="review-author" id="outRevAuthor3">Нурлан Эркинов</div>
+                    <p class="review-text" id="outRevDesc3">«Комуз черте албайм деп ойлочумун, бирок Кылымбек агай ар бир кыймылды жай, түшүнүктүү көрсөтөт. Эки айда эле алгачкы күүмдү черте баштадым.»</p>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="review-author" id="outRevAuthor4">Гүлназ Осмонова</div>
+                    <p class="review-text" id="outRevDesc4">«Балама жазылдырдым, эки жумада эле үйгө комуз чертип келет. Мугалимдин мамилеси да, окутуу ыкмасы да абдан жакшы.»</p>
+                </div>
             </div>
         </section>
 
-        <!-- КӨП БЕРИЛҮҮЧҮ СУРОТОР БӨЛҮМҮ -->
         <section id="faq">
             <h2 class="section-title" data-aos="fade-up">Көп берилүүчү суроолор</h2>
             <div class="faq-container">
@@ -610,108 +519,48 @@
 
     </div>
 
+    <footer>© Комуз сыры курсу. Бардык укуктар корголгон.</footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, offset: 50 });
+        AOS.init({ once: true, offset: 50, duration: 800 });
 
         function toggleAdmin() {
             let panel = document.getElementById('adminPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
+        const fields = [
+            'phone','insta','youtube',
+            'headerTitle','headerSubtitle','headerDesc',
+            'featTitle1','featDesc1','featTitle2','featDesc2','featTitle3','featDesc3',
+            'p1','d1','p2','d2','p3','d3','p4','d4',
+            'revAuthor1','revDesc1','revAuthor2','revDesc2','revAuthor3','revDesc3','revAuthor4','revDesc4',
+            'faqQ1','faqQ1Desc','faqQ2','faqQ2Desc'
+        ];
+        const idMap = {
+            phone:'inPhone', insta:'inInsta', youtube:'inYoutube',
+            headerTitle:'inHeaderTitle', headerSubtitle:'inHeaderSubtitle', headerDesc:'inHeaderDesc',
+            featTitle1:'inFeatTitle1', featDesc1:'inFeatDesc1', featTitle2:'inFeatTitle2', featDesc2:'inFeatDesc2',
+            featTitle3:'inFeatTitle3', featDesc3:'inFeatDesc3',
+            p1:'inPrice1', d1:'inDesc1', p2:'inPrice2', d2:'inDesc2', p3:'inPrice3', d3:'inDesc3', p4:'inPrice4', d4:'inDesc4',
+            revAuthor1:'inRevAuthor1', revDesc1:'inRevDesc1', revAuthor2:'inRevAuthor2', revDesc2:'inRevDesc2',
+            revAuthor3:'inRevAuthor3', revDesc3:'inRevDesc3', revAuthor4:'inRevAuthor4', revDesc4:'inRevDesc4',
+            faqQ1:'inFaqQ1', faqQ1Desc:'inFaqQ1Desc', faqQ2:'inFaqQ2', faqQ2Desc:'inFaqQ2Desc'
+        };
+
         function loadData() {
-            if(localStorage.getItem('phone')) document.getElementById('inPhone').value = localStorage.getItem('phone');
-            if(localStorage.getItem('insta')) document.getElementById('inInsta').value = localStorage.getItem('insta');
-            if(localStorage.getItem('youtube')) document.getElementById('inYoutube').value = localStorage.getItem('youtube');
-            
-            if(localStorage.getItem('headerTitle')) document.getElementById('inHeaderTitle').value = localStorage.getItem('headerTitle');
-            if(localStorage.getItem('headerSubtitle')) document.getElementById('inHeaderSubtitle').value = localStorage.getItem('headerSubtitle');
-            if(localStorage.getItem('headerDesc')) document.getElementById('inHeaderDesc').value = localStorage.getItem('headerDesc');
-
-            if(localStorage.getItem('featTitle1')) document.getElementById('inFeatTitle1').value = localStorage.getItem('featTitle1');
-            if(localStorage.getItem('featDesc1')) document.getElementById('inFeatDesc1').value = localStorage.getItem('featDesc1');
-            if(localStorage.getItem('featTitle2')) document.getElementById('inFeatTitle2').value = localStorage.getItem('featTitle2');
-            if(localStorage.getItem('featDesc2')) document.getElementById('inFeatDesc2').value = localStorage.getItem('featDesc2');
-            if(localStorage.getItem('featTitle3')) document.getElementById('inFeatTitle3').value = localStorage.getItem('featTitle3');
-            if(localStorage.getItem('featDesc3')) document.getElementById('inFeatDesc3').value = localStorage.getItem('featDesc3');
-
-            if(localStorage.getItem('tImg1')) document.getElementById('inTImg1').value = localStorage.getItem('tImg1');
-            if(localStorage.getItem('tName1')) document.getElementById('inTName1').value = localStorage.getItem('tName1');
-            if(localStorage.getItem('tRole1')) document.getElementById('inTRole1').value = localStorage.getItem('tRole1');
-            if(localStorage.getItem('tDesc1')) document.getElementById('inTDesc1').value = localStorage.getItem('tDesc1');
-            if(localStorage.getItem('tShow1')) document.getElementById('inTShow1').value = localStorage.getItem('tShow1');
-
-            if(localStorage.getItem('tImg2')) document.getElementById('inTImg2').value = localStorage.getItem('tImg2');
-            if(localStorage.getItem('tName2')) document.getElementById('inTName2').value = localStorage.getItem('tName2');
-            if(localStorage.getItem('tRole2')) document.getElementById('inTRole2').value = localStorage.getItem('tRole2');
-            if(localStorage.getItem('tDesc2')) document.getElementById('inTDesc2').value = localStorage.getItem('tDesc2');
-            if(localStorage.getItem('tShow2')) document.getElementById('inTShow2').value = localStorage.getItem('tShow2');
-
-            if(localStorage.getItem('p1')) document.getElementById('inPrice1').value = localStorage.getItem('p1');
-            if(localStorage.getItem('d1')) document.getElementById('inDesc1').value = localStorage.getItem('d1');
-            if(localStorage.getItem('p2')) document.getElementById('inPrice2').value = localStorage.getItem('p2');
-            if(localStorage.getItem('d2')) document.getElementById('inDesc2').value = localStorage.getItem('d2');
-            if(localStorage.getItem('p3')) document.getElementById('inPrice3').value = localStorage.getItem('p3');
-            if(localStorage.getItem('d3')) document.getElementById('inDesc3').value = localStorage.getItem('d3');
-
-            if(localStorage.getItem('revAuthor1')) document.getElementById('inRevAuthor1').value = localStorage.getItem('revAuthor1');
-            if(localStorage.getItem('revDesc1')) document.getElementById('inRevDesc1').value = localStorage.getItem('revDesc1');
-            if(localStorage.getItem('revAuthor2')) document.getElementById('inRevAuthor2').value = localStorage.getItem('revAuthor2');
-            if(localStorage.getItem('revDesc2')) document.getElementById('inRevDesc2').value = localStorage.getItem('revDesc2');
-
-            if(localStorage.getItem('faqQ1')) document.getElementById('inFaqQ1').value = localStorage.getItem('faqQ1');
-            if(localStorage.getItem('faqQ1Desc')) document.getElementById('inFaqQ1Desc').value = localStorage.getItem('faqQ1Desc');
-            if(localStorage.getItem('faqQ2')) document.getElementById('inFaqQ2').value = localStorage.getItem('faqQ2');
-            if(localStorage.getItem('faqQ2Desc')) document.getElementById('inFaqQ2Desc').value = localStorage.getItem('faqQ2Desc');
-
+            fields.forEach(key => {
+                const saved = localStorage.getItem(key);
+                if (saved !== null) document.getElementById(idMap[key]).value = saved;
+            });
             updateUI();
         }
 
         function saveData() {
-            localStorage.setItem('phone', document.getElementById('inPhone').value);
-            localStorage.setItem('insta', document.getElementById('inInsta').value);
-            localStorage.setItem('youtube', document.getElementById('inYoutube').value);
-            
-            localStorage.setItem('headerTitle', document.getElementById('inHeaderTitle').value);
-            localStorage.setItem('headerSubtitle', document.getElementById('inHeaderSubtitle').value);
-            localStorage.setItem('headerDesc', document.getElementById('inHeaderDesc').value);
-
-            localStorage.setItem('featTitle1', document.getElementById('inFeatTitle1').value);
-            localStorage.setItem('featDesc1', document.getElementById('inFeatDesc1').value);
-            localStorage.setItem('featTitle2', document.getElementById('inFeatTitle2').value);
-            localStorage.setItem('featDesc2', document.getElementById('inFeatDesc2').value);
-            localStorage.setItem('featTitle3', document.getElementById('inFeatTitle3').value);
-            localStorage.setItem('featDesc3', document.getElementById('inFeatDesc3').value);
-
-            localStorage.setItem('tImg1', document.getElementById('inTImg1').value);
-            localStorage.setItem('tName1', document.getElementById('inTName1').value);
-            localStorage.setItem('tRole1', document.getElementById('inTRole1').value);
-            localStorage.setItem('tDesc1', document.getElementById('inTDesc1').value);
-            localStorage.setItem('tShow1', document.getElementById('inTShow1').value);
-
-            localStorage.setItem('tImg2', document.getElementById('inTImg2').value);
-            localStorage.setItem('tName2', document.getElementById('inTName2').value);
-            localStorage.setItem('tRole2', document.getElementById('inTRole2').value);
-            localStorage.setItem('tDesc2', document.getElementById('inTDesc2').value);
-            localStorage.setItem('tShow2', document.getElementById('inTShow2').value);
-
-            localStorage.setItem('p1', document.getElementById('inPrice1').value);
-            localStorage.setItem('d1', document.getElementById('inDesc1').value);
-            localStorage.setItem('p2', document.getElementById('inPrice2').value);
-            localStorage.setItem('d2', document.getElementById('inDesc2').value);
-            localStorage.setItem('p3', document.getElementById('inPrice3').value);
-            localStorage.setItem('d3', document.getElementById('inDesc3').value);
-
-            localStorage.setItem('revAuthor1', document.getElementById('inRevAuthor1').value);
-            localStorage.setItem('revDesc1', document.getElementById('inRevDesc1').value);
-            localStorage.setItem('revAuthor2', document.getElementById('inRevAuthor2').value);
-            localStorage.setItem('revDesc2', document.getElementById('inRevDesc2').value);
-
-            localStorage.setItem('faqQ1', document.getElementById('inFaqQ1').value);
-            localStorage.setItem('faqQ1Desc', document.getElementById('inFaqQ1Desc').value);
-            localStorage.setItem('faqQ2', document.getElementById('inFaqQ2').value);
-            localStorage.setItem('faqQ2Desc', document.getElementById('inFaqQ2Desc').value);
-
+            fields.forEach(key => {
+                localStorage.setItem(key, document.getElementById(idMap[key]).value);
+            });
             updateUI();
             alert('Өзгөртүүлөр ийгиликтүү сакталды!');
             document.getElementById('adminPanel').style.display = 'none';
@@ -719,7 +568,7 @@
 
         function updateUI() {
             let phone = document.getElementById('inPhone').value;
-            
+
             document.getElementById('navInsta').href = document.getElementById('inInsta').value;
             document.getElementById('navYoutube').href = document.getElementById('inYoutube').value;
 
@@ -734,44 +583,22 @@
             document.getElementById('outFeatTitle3').innerText = document.getElementById('inFeatTitle3').value;
             document.getElementById('outFeatDesc3').innerText = document.getElementById('inFeatDesc3').value;
 
-            let teachersHtml = '';
-            let tShow1 = document.getElementById('inTShow1').value.trim().toLowerCase();
-            if(tShow1 === 'true') {
-                teachersHtml += `
-                    <div class="teacher-card" data-aos="fade-up">
-                        <img src="${document.getElementById('inTImg1').value}" alt="Мугалим">
-                        <h3>${document.getElementById('inTName1').value}</h3>
-                        <span class="teacher-role">${document.getElementById('inTRole1').value}</span>
-                        <p class="teacher-desc">${document.getElementById('inTDesc1').value}</p>
-                    </div>`;
-            }
-
-            let tShow2 = document.getElementById('inTShow2').value.trim().toLowerCase();
-            if(tShow2 === 'true') {
-                teachersHtml += `
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="150">
-                        <img src="${document.getElementById('inTImg2').value}" alt="Мугалим">
-                        <h3>${document.getElementById('inTName2').value}</h3>
-                        <span class="teacher-role">${document.getElementById('inTRole2').value}</span>
-                        <p class="teacher-desc">${document.getElementById('inTDesc2').value}</p>
-                    </div>`;
-            }
-            document.getElementById('teachersContainer').innerHTML = teachersHtml;
-
-            let p1 = document.getElementById('inPrice1').value;
-            let d1 = document.getElementById('inDesc1').value;
+            let p1 = document.getElementById('inPrice1').value, d1 = document.getElementById('inDesc1').value;
             document.getElementById('outPrice1').innerText = p1;
             document.getElementById('outDesc1').innerText = d1;
             document.getElementById('waBtn1').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Жеке%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d1)}%20(Баасы:%20${encodeURIComponent(p1)})`;
 
-            let p2 = document.getElementById('inPrice2').value;
-            let d2 = document.getElementById('inDesc2').value;
+            let p2 = document.getElementById('inPrice2').value, d2 = document.getElementById('inDesc2').value;
             document.getElementById('outPrice2').innerText = p2;
             document.getElementById('outDesc2').innerText = d2;
-            document.getElementById('waBtn2').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Группалык%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d2)}%20(Баасы:%20${encodeURIComponent(p2)})`;
+            document.getElementById('waBtn2').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Онлайн%20сабакка%20(видео%20уроктор)%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d2)}%20(Баасы:%20${encodeURIComponent(p2)})`;
 
-            let p3 = document.getElementById('inPrice3').value;
-            let d3 = document.getElementById('inDesc3').value;
+            let p4 = document.getElementById('inPrice4').value, d4 = document.getElementById('inDesc4').value;
+            document.getElementById('outPrice4').innerText = p4;
+            document.getElementById('outDesc4').innerText = d4;
+            document.getElementById('waBtn4').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Видеозвонок%20аркылуу%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d4)}%20(Баасы:%20${encodeURIComponent(p4)})`;
+
+            let p3 = document.getElementById('inPrice3').value, d3 = document.getElementById('inDesc3').value;
             document.getElementById('outPrice3').innerText = p3;
             document.getElementById('outDesc3').innerText = d3;
             document.getElementById('waBtn3').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Бир%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d3)}%20(Баасы:%20${encodeURIComponent(p3)})`;
@@ -780,6 +607,10 @@
             document.getElementById('outRevDesc1').innerText = document.getElementById('inRevDesc1').value;
             document.getElementById('outRevAuthor2').innerText = document.getElementById('inRevAuthor2').value;
             document.getElementById('outRevDesc2').innerText = document.getElementById('inRevDesc2').value;
+            document.getElementById('outRevAuthor3').innerText = document.getElementById('inRevAuthor3').value;
+            document.getElementById('outRevDesc3').innerText = document.getElementById('inRevDesc3').value;
+            document.getElementById('outRevAuthor4').innerText = document.getElementById('inRevAuthor4').value;
+            document.getElementById('outRevDesc4').innerText = document.getElementById('inRevDesc4').value;
 
             document.getElementById('outFaqQ1').innerText = document.getElementById('inFaqQ1').value;
             document.getElementById('outFaqQ1Desc').innerText = document.getElementById('inFaqQ1Desc').value;
@@ -791,3 +622,13 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
