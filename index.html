@@ -22,14 +22,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         html { scroll-behavior: smooth; }
-
+ 
         body {
             background: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
-
+ 
         /* ЖОГОРКУ ЖАБЫШКААК МЕНЮ */
         .navbar {
             position: fixed;
@@ -66,7 +66,7 @@
         .social-icons a { color: white; font-size: 1.2rem; transition: all 0.4s ease-in-out; }
         .social-icons a.instagram:hover { color: #E1306C; transform: scale(1.15); }
         .social-icons a.youtube:hover { color: #FF0000; transform: scale(1.15); }
-
+ 
         /* Мобилдик меню баскычы */
         .nav-toggle {
             display: none;
@@ -74,7 +74,7 @@
             font-size: 1.6rem; cursor: pointer;
             min-width: 44px; min-height: 44px;
         }
-
+ 
         /* ============ HERO SECTION (100vh, фондук сүрөт fixed) ============ */
         .hero {
             position: relative;
@@ -121,10 +121,10 @@
             0%, 100% { transform: translate(-50%, 0); }
             50% { transform: translate(-50%, 10px); }
         }
-
+ 
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         section { margin-bottom: 60px; }
-
+ 
         .section-title {
             text-align: center;
             color: #ffca28;
@@ -141,7 +141,7 @@
             margin: 8px auto 0 auto;
             border-radius: 2px;
         }
-
+ 
         /* КАРТОЧКАЛАР (жалпы стиль) */
         .features-container, .pricing-container, .reviews-container {
             display: grid;
@@ -166,11 +166,11 @@
         .feature-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
         .feature-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
         .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
-
+ 
         .price-card h3 { color: #ffffff; font-size: 1.4rem; margin-bottom: 10px; }
         .price-val { font-size: 2.2rem; color: #ffca28; font-weight: bold; margin: 15px 0; }
         .price-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
-
+ 
         .btn {
             display: inline-block;
             background-color: var(--accent);
@@ -189,10 +189,10 @@
         }
         .btn:hover { background-color: #b45309; transform: scale(1.06); }
         .btn:active { transform: scale(0.96); }
-
+ 
         .review-author { font-weight: bold; color: #ffca28; margin-bottom: 5px; }
         .review-text { color: var(--text-muted); font-size: 0.95rem; font-style: italic; }
-
+ 
         .faq-container { display: flex; flex-direction: column; gap: 15px; }
         .faq-item {
             background: var(--bg-card);
@@ -206,7 +206,7 @@
         .faq-item:hover { transform: translateY(-4px); }
         .faq-q { font-weight: bold; color: #ffca28; font-size: 1.1rem; margin-bottom: 8px; }
         .faq-a { color: var(--text-muted); font-size: 0.95rem; }
-
+ 
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -214,7 +214,7 @@
             font-size: 0.85rem;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
-
+ 
         /* ============ БАШКАРУУ ПАНЕЛИ (Агай өзү өзгөртө турган жер) ============ */
         .admin-toggle-info { text-align: right; margin-bottom: 15px; }
         .admin-toggle-info button {
@@ -252,7 +252,7 @@
             font-size: 0.95rem;
         }
         .admin-group textarea { resize: vertical; height: 70px; }
-
+ 
         /* ============ МОБИЛДИК АДАПТАЦИЯ ============ */
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -272,15 +272,15 @@
             }
             .navbar { flex-wrap: wrap; }
             .social-icons { margin-left: auto; border-left: none; }
-
+ 
             /* iOS/Android'до fixed фон түшүрбөй, жеңил иштеши үчүн scroll режимине которобуз */
             .hero { background-attachment: scroll; height: 100svh; }
             .hero h1 { font-size: 2.1rem; }
             .hero h2 { font-size: 1.2rem; }
             .hero p { font-size: 1rem; }
-
+ 
             .section-title { font-size: 1.7rem; }
-
+ 
             .btn {
                 width: 100%;
                 max-width: 320px;
@@ -288,7 +288,7 @@
                 font-size: 1.05rem;
             }
         }
-
+ 
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.7rem; }
             .hero h2 { font-size: 1.05rem; }
@@ -296,7 +296,7 @@
             .container { padding: 15px; }
             .feature-card, .price-card { padding: 25px 16px; }
         }
-
+ 
         @media (hover: none) and (pointer: coarse) {
             .btn:hover, .feature-card:hover,
             .price-card:hover, .review-card:hover { transform: none; }
@@ -304,7 +304,7 @@
     </style>
 </head>
 <body>
-
+ 
     <nav class="navbar">
         <div class="nav-brand">
             <img src="atay.jpg" alt="Кылымбек Саттаров">
@@ -326,7 +326,7 @@
             <i class="fas fa-bars"></i>
         </button>
     </nav>
-
+ 
     <!-- ============ HERO (100vh, fixed фон) ============ -->
     <div class="hero">
         <div class="hero-inner" data-aos="zoom-in" data-aos-duration="1000">
@@ -337,31 +337,31 @@
         </div>
         <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
     </div>
-
+ 
     <div class="container">
-
+ 
         <div class="admin-toggle-info">
             <button onclick="toggleAdmin()">⚙️ Башкаруу панели</button>
         </div>
-
+ 
         <div class="admin-panel" id="adminPanel">
             <h3>⚙️ Сайтты башкаруу панели</h3>
-
+ 
             <div class="admin-group">
                 <label>WhatsApp Номериңиз (мисалы: 996500123456):</label>
-                <input type="text" id="inPhone" value="996500123456">
+                <input type="text" id="inPhone" value="996550109853">
             </div>
             <div class="admin-group">
                 <label>Instagram шилтемеси (URL):</label>
-                <input type="text" id="inInsta" value="https://instagram.com">
+                <input type="text" id="inInsta" value="https://www.instagram.com/komuz.syry?igsh=MXcxZTN2dzIxeHJpNQ==">
             </div>
             <div class="admin-group">
                 <label>YouTube шилтемеси (URL):</label>
-                <input type="text" id="inYoutube" value="https://youtube.com">
+                <input type="text" id="inYoutube" value="https://youtube.com/@kylymbeksattarov?si=zvVULW24TSsnF0bN">
             </div>
-
+ 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
-
+ 
             <h4>✨ Башкы беттеги жазуулар (Hero)</h4>
             <div class="admin-group">
                 <label>Башкы чоң аталыш (H1):</label>
@@ -375,61 +375,61 @@
                 <label>Башкы текст / Описание:</label>
                 <textarea id="inHeaderDesc">Улуттук өнөрдү нөлдөн баштап профессионалдык деңгээлге чейин сырларын ачып үйрөнүңүз.</textarea>
             </div>
-
+ 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
-
+ 
             <h4>🌟 Курстун өзгөчөлүктөрү (Артыкчылыктар)</h4>
             <div class="admin-group"><label>1-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle1" value="Нөлдөн үйрөнүү"></div>
             <div class="admin-group"><label>1-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc1" value="Музыкалык билимсиз эле комуз чертүүнү тез өздөштүрүңүз."></div>
-
+ 
             <div class="admin-group"><label>2-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle2" value="Ыңгайлуу график"></div>
             <div class="admin-group"><label>2-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc2" value="Өзүңүзгө ыңгайлуу убакта сабактарга катышыңыз."></div>
-
+ 
             <div class="admin-group"><label>3-Артыкчылык аталышы:</label><input type="text" id="inFeatTitle3" value="Практикалык тажрыйба"></div>
             <div class="admin-group"><label>3-Артыкчылык сүрөттөмөсү:</label><input type="text" id="inFeatDesc3" value="Кыска мөөнөттө белгилүү күүлөрдү эркин чертип баштаңыз."></div>
-
+ 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
-
+ 
             <h4>💰 Сабактардын баасы</h4>
             <div class="admin-group"><label>1. Жеке сабак баасы:</label><input type="text" id="inPrice1" value="6000 сом"></div>
             <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc1" value="Айына 3 жолу, толук жеке көңүл бурулат."></div>
-
+ 
             <div class="admin-group"><label>2. Онлайн сабак (видео уроктор) баасы:</label><input type="text" id="inPrice2" value="3000 сом"></div>
             <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc2" value="Даяр видео сабактар аркылуу өз убагыңызда үйрөнүү."></div>
-
+ 
             <div class="admin-group"><label>3. Видеозвонок аркылуу сабак баасы:</label><input type="text" id="inPrice4" value="5000 сом"></div>
             <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc4" value="Устат менен түз видеозвонок аркылуу жеке байланышта сабак."></div>
-
+ 
             <div class="admin-group"><label>4. Бир сабак баасы:</label><input type="text" id="inPrice3" value="600 сом"></div>
             <div class="admin-group"><label>Шарты:</label><input type="text" id="inDesc3" value="Сыноо сабагы же бир жолку келүү."></div>
-
+ 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
-
+ 
             <h4>💬 Окуучулардын пикирлери (Отзывдар)</h4>
             <div class="admin-group"><label>1-Отзыв автору:</label><input type="text" id="inRevAuthor1" value="Айсулуу Бекболотова"></div>
             <div class="admin-group"><label>1-Отзыв тексти:</label><textarea id="inRevDesc1">«Кылымбек агайдын сабактары абдан жакты! Бир айдын ичинде эле эки күү үйрөнүп чыктым. Чоң рахмат!»</textarea></div>
-
+ 
             <div class="admin-group"><label>2-Отзыв автору:</label><input type="text" id="inRevAuthor2" value="Бакыт Марат уулу"></div>
             <div class="admin-group"><label>2-Отзыв тексти:</label><textarea id="inRevDesc2">«Нөлдөн баштагам, учурда эркин чертип калдым. Түшүндүрүү ыкмасы супер.»</textarea></div>
-
+ 
             <div class="admin-group"><label>3-Отзыв автору:</label><input type="text" id="inRevAuthor3" value="Нурлан Эркинов"></div>
             <div class="admin-group"><label>3-Отзыв тексти:</label><textarea id="inRevDesc3">«Комуз черте албайм деп ойлочумун, бирок Кылымбек агай ар бир кыймылды жай, түшүнүктүү көрсөтөт. Эки айда эле алгачкы күүмдү черте баштадым.»</textarea></div>
-
+ 
             <div class="admin-group"><label>4-Отзыв автору:</label><input type="text" id="inRevAuthor4" value="Гүлназ Осмонова"></div>
             <div class="admin-group"><label>4-Отзыв тексти:</label><textarea id="inRevDesc4">«Балама жазылдырдым, эки жумада эле үйгө комуз чертип келет. Мугалимдин мамилеси да, окутуу ыкмасы да абдан жакшы.»</textarea></div>
-
+ 
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #d97706;">
-
+ 
             <h4>❓ Көп берилүүчү суроолор (FAQ)</h4>
             <div class="admin-group"><label>1-Суроо:</label><input type="text" id="inFaqQ1" value="Комузум жок болсо дагы окуй аламбы?"></div>
             <div class="admin-group"><label>1-Жооп:</label><textarea id="inFaqQ1Desc">Ооба, биринчи сабактарда студиянын комуздарын колдоно аласыз, кийин өзүңүзгө сатып алууга кеңеш беребиз.</textarea></div>
-
+ 
             <div class="admin-group"><label>2-Суроо:</label><input type="text" id="inFaqQ2" value="Сабактар канча убакытка созулат?"></div>
             <div class="admin-group"><label>2-Жооп:</label><textarea id="inFaqQ2Desc">Бир сабактын убактысы 1 саатты (60 мүнөт) түзөт.</textarea></div>
-
+ 
             <button class="btn" onclick="saveData()">Өзгөртүүлөрдү сактоо</button>
         </div>
-
+ 
         <section id="features">
             <h2 class="section-title" data-aos="fade-up">Эмне үчүн бизди тандашат?</h2>
             <div class="features-container">
@@ -450,7 +450,7 @@
                 </div>
             </div>
         </section>
-
+ 
         <section id="pricing">
             <h2 class="section-title" data-aos="fade-up">Сабактардын баасы</h2>
             <div class="pricing-container">
@@ -480,7 +480,7 @@
                 </div>
             </div>
         </section>
-
+ 
         <section id="reviews">
             <h2 class="section-title" data-aos="fade-up">Окуучулардын пикирлери</h2>
             <div class="reviews-container">
@@ -502,7 +502,7 @@
                 </div>
             </div>
         </section>
-
+ 
         <section id="faq">
             <h2 class="section-title" data-aos="fade-up">Көп берилүүчү суроолор</h2>
             <div class="faq-container">
@@ -516,20 +516,20 @@
                 </div>
             </div>
         </section>
-
+ 
     </div>
-
+ 
     <footer>© Комуз сыры курсу. Бардык укуктар корголгон.</footer>
-
+ 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
-
+ 
         function toggleAdmin() {
             let panel = document.getElementById('adminPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
-
+ 
         const fields = [
             'phone','insta','youtube',
             'headerTitle','headerSubtitle','headerDesc',
@@ -548,7 +548,7 @@
             revAuthor3:'inRevAuthor3', revDesc3:'inRevDesc3', revAuthor4:'inRevAuthor4', revDesc4:'inRevDesc4',
             faqQ1:'inFaqQ1', faqQ1Desc:'inFaqQ1Desc', faqQ2:'inFaqQ2', faqQ2Desc:'inFaqQ2Desc'
         };
-
+ 
         function loadData() {
             fields.forEach(key => {
                 const saved = localStorage.getItem(key);
@@ -556,7 +556,7 @@
             });
             updateUI();
         }
-
+ 
         function saveData() {
             fields.forEach(key => {
                 localStorage.setItem(key, document.getElementById(idMap[key]).value);
@@ -565,44 +565,44 @@
             alert('Өзгөртүүлөр ийгиликтүү сакталды!');
             document.getElementById('adminPanel').style.display = 'none';
         }
-
+ 
         function updateUI() {
             let phone = document.getElementById('inPhone').value;
-
+ 
             document.getElementById('navInsta').href = document.getElementById('inInsta').value;
             document.getElementById('navYoutube').href = document.getElementById('inYoutube').value;
-
+ 
             document.getElementById('outHeaderTitle').innerText = document.getElementById('inHeaderTitle').value;
             document.getElementById('outHeaderSubtitle').innerText = document.getElementById('inHeaderSubtitle').value;
             document.getElementById('outHeaderDesc').innerText = document.getElementById('inHeaderDesc').value;
-
+ 
             document.getElementById('outFeatTitle1').innerText = document.getElementById('inFeatTitle1').value;
             document.getElementById('outFeatDesc1').innerText = document.getElementById('inFeatDesc1').value;
             document.getElementById('outFeatTitle2').innerText = document.getElementById('inFeatTitle2').value;
             document.getElementById('outFeatDesc2').innerText = document.getElementById('inFeatDesc2').value;
             document.getElementById('outFeatTitle3').innerText = document.getElementById('inFeatTitle3').value;
             document.getElementById('outFeatDesc3').innerText = document.getElementById('inFeatDesc3').value;
-
+ 
             let p1 = document.getElementById('inPrice1').value, d1 = document.getElementById('inDesc1').value;
             document.getElementById('outPrice1').innerText = p1;
             document.getElementById('outDesc1').innerText = d1;
             document.getElementById('waBtn1').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Жеке%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d1)}%20(Баасы:%20${encodeURIComponent(p1)})`;
-
+ 
             let p2 = document.getElementById('inPrice2').value, d2 = document.getElementById('inDesc2').value;
             document.getElementById('outPrice2').innerText = p2;
             document.getElementById('outDesc2').innerText = d2;
             document.getElementById('waBtn2').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Онлайн%20сабакка%20(видео%20уроктор)%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d2)}%20(Баасы:%20${encodeURIComponent(p2)})`;
-
+ 
             let p4 = document.getElementById('inPrice4').value, d4 = document.getElementById('inDesc4').value;
             document.getElementById('outPrice4').innerText = p4;
             document.getElementById('outDesc4').innerText = d4;
             document.getElementById('waBtn4').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Видеозвонок%20аркылуу%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d4)}%20(Баасы:%20${encodeURIComponent(p4)})`;
-
+ 
             let p3 = document.getElementById('inPrice3').value, d3 = document.getElementById('inDesc3').value;
             document.getElementById('outPrice3').innerText = p3;
             document.getElementById('outDesc3').innerText = d3;
             document.getElementById('waBtn3').href = `https://wa.me/${phone}?text=Саламатсызбы!%20Бир%20сабакка%20жазылгым%20келет.%20Шарты:%20${encodeURIComponent(d3)}%20(Баасы:%20${encodeURIComponent(p3)})`;
-
+ 
             document.getElementById('outRevAuthor1').innerText = document.getElementById('inRevAuthor1').value;
             document.getElementById('outRevDesc1').innerText = document.getElementById('inRevDesc1').value;
             document.getElementById('outRevAuthor2').innerText = document.getElementById('inRevAuthor2').value;
@@ -611,24 +611,17 @@
             document.getElementById('outRevDesc3').innerText = document.getElementById('inRevDesc3').value;
             document.getElementById('outRevAuthor4').innerText = document.getElementById('inRevAuthor4').value;
             document.getElementById('outRevDesc4').innerText = document.getElementById('inRevDesc4').value;
-
+ 
             document.getElementById('outFaqQ1').innerText = document.getElementById('inFaqQ1').value;
             document.getElementById('outFaqQ1Desc').innerText = document.getElementById('inFaqQ1Desc').value;
             document.getElementById('outFaqQ2').innerText = document.getElementById('inFaqQ2').value;
             document.getElementById('outFaqQ2Desc').innerText = document.getElementById('inFaqQ2Desc').value;
         }
-
+ 
         window.onload = loadData;
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
+ 
 
 
