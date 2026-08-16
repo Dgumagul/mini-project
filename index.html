@@ -525,9 +525,25 @@
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
  
+        const ADMIN_PASSWORD = "kylymbek9991";
+        let adminUnlocked = false;
+ 
         function toggleAdmin() {
             let panel = document.getElementById('adminPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+                return;
+            }
+            if (!adminUnlocked) {
+                let entered = prompt('Башкаруу панелине кирүү үчүн пароль жазыңыз:');
+                if (entered === null) return;
+                if (entered !== ADMIN_PASSWORD) {
+                    alert('Пароль туура эмес!');
+                    return;
+                }
+                adminUnlocked = true;
+            }
+            panel.style.display = 'block';
         }
  
         const fields = [
